@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:text="Resumen Formularios"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:textSize="30sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:text="Formularios Activos       35"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:text="Formularios Desactivados      11"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="348dp"
+        android:layout_height="39dp"
+        android:text="Formularios Respondidos       30"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:visibility="visible" />
+
+
+</LinearLayout>
