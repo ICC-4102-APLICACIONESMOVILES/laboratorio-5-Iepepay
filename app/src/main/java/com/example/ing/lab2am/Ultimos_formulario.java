@@ -67,8 +67,6 @@ public class Ultimos_formulario extends Fragment {
         }
     }
 
-
-
     @Override
     public void onDetach() {
         super.onDetach();

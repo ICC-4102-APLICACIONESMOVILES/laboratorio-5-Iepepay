@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/formulario"
             android:title="Formulario"
             />
         <item
-            android:id="@+id/nav_cameraa"
+            android:id="@+id/uformularios"
             android:title="Ultimos Formularios"
             />
         <item
-            android:id="@+id/nav_cameraaa"
+            android:id="@+id/resumen"
             android:title="Resumen"
             />
     </group>

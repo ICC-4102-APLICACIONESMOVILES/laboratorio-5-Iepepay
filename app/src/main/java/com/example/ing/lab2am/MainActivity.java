@@ -1,8 +1,11 @@
 package com.example.ing.lab2am;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.FragmentManager;
+import android.arch.persistence.room.Room;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,14 +15,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private NetworkManager networkManager;
+    SharedPreferences sharedpreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        networkManager = NetworkManager.getInstance(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
 
-                        android.support.v4.app.Fragment fgmt = null;
+                        Fragment fgmt = null;
                         int id = menuItem.getItemId();
 
-                        if (id == R.id.nav_camera) {
+                        if (id == R.id.formulario) {
                             fgmt = new Formulario();
                         }
 
-                        else if (id == R.id.nav_cameraaa) {
+                        else if (id == R.id.resumen) {
                             fgmt = new Resumen();
                         }
 
@@ -98,4 +110,51 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void onLoginClick(View view){
+
+        try {
+            networkManager.login("ignacio@magnet.cl", "usuarioprueba", new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    getForms();
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // TODO: Handle error
+                    System.out.println(error);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getForms(){
+        networkManager.getForms(new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                System.out.println(response);
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO: Handle error
+                System.out.println(error);
+            }
+        });
+    }
+
+
+
+
+
+
 }

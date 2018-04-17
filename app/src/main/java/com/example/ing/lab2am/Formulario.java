@@ -1,13 +1,20 @@
 package com.example.ing.lab2am;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Formulario extends Fragment {
@@ -54,6 +61,24 @@ public class Formulario extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Encuesta");
+        spinnerArray.add("Inspeccion");
+        spinnerArray.add("Reporte");
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this.getContext(), android.R.layout.simple_list_item_1, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) view.findViewById(R.id.spinner);
+        sItems.setAdapter(adapter);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -67,16 +92,6 @@ public class Formulario extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {
@@ -98,4 +113,7 @@ public class Formulario extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
 }

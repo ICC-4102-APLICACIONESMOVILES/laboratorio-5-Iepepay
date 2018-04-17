@@ -9,13 +9,13 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 @Dao
-public interface daoAccess {
+public interface DaoAccess {
 
     @Insert
     void insertOnlySingleForm (Forms forms);
     @Insert
     void insertMultipleForms (List<Forms> FormsList);
-    @Query("SELECT * FROM Forms WHERE FormId = :FormId")
+    @Query("SELECT * FROM Forms WHERE FormId = :formId")
     Forms fetchOneFormsbyFormId (int formId);
     @Update
     void updateForm (Forms forms);
